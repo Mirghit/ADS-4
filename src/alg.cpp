@@ -11,9 +11,6 @@ int countPairs1(int *arr, int len, int value) {
   return result;
 }
 int countPairs2(int *arr, int len, int value) {
-  if (len < 2) {
-    return 0;
-  }
   int result = 0;
   int left = 0;
   int right = len - 1;
@@ -27,13 +24,13 @@ int countPairs2(int *arr, int len, int value) {
       }
       int leftEl = arr[left];
       int leftDoubles = 0;
-      while (arr[left] == leftEl) {
+      while (left <= right && arr[left] == leftEl) {
         leftDoubles++;
         left++;
       }
       int rightEl = arr[right];
       int rightDoubles = 0;
-      while (arr[right] == rightEl) {
+      while (right >= left &&  arr[right] == rightEl) {
         rightDoubles++;
         right--;
       }
