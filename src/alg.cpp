@@ -12,39 +12,6 @@ int countPairs1(int *arr, int len, int value) {
 }
 int countPairs2(int *arr, int len, int value) {
   int result = 0;
-  int left = 0;
-  int right = len - 1;
-  while (left < right) {
-    int sum = arr[left] + arr[right];
-    if (sum == value) {
-      if (arr[left] == arr[right]) {
-        int n = right - left + 1;
-        result += n * (n - 1) / 2;
-        break;
-      }
-      int leftEl = arr[left];
-      int leftDoubles = 0;
-      while (left <= right && arr[left] == leftEl) {
-        leftDoubles++;
-        left++;
-      }
-      int rightEl = arr[right];
-      int rightDoubles = 0;
-      while (right >= left &&  arr[right] == rightEl) {
-        rightDoubles++;
-        right--;
-      }
-      result += leftDoubles * rightDoubles;
-    } else if (sum < value) {
-      left++;
-    } else {
-      right--;
-    }
-  }
-  return result;
-}
-int countPairs3(int *arr, int len, int value) {
-  int result = 0;
   for (int i = 0; i < len - 1; i++) {
     int found = value - arr[i];
     int start = i + 1;
@@ -79,6 +46,39 @@ int countPairs3(int *arr, int len, int value) {
       }
     }
     result += (lp - fp + 1);
+  }
+  return result;
+}
+int countPairs3(int *arr, int len, int value) {
+  int result = 0;
+  int left = 0;
+  int right = len - 1;
+  while (left < right) {
+    int sum = arr[left] + arr[right];
+    if (sum == value) {
+      if (arr[left] == arr[right]) {
+        int n = right - left + 1;
+        result += n * (n - 1) / 2;
+        break;
+      }
+      int leftEl = arr[left];
+      int leftDoubles = 0;
+      while (left <= right && arr[left] == leftEl) {
+        leftDoubles++;
+        left++;
+      }
+      int rightEl = arr[right];
+      int rightDoubles = 0;
+      while (right >= left &&  arr[right] == rightEl) {
+        rightDoubles++;
+        right--;
+      }
+      result += leftDoubles * rightDoubles;
+    } else if (sum < value) {
+      left++;
+    } else {
+      right--;
+    }
   }
   return result;
 }
