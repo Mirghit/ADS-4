@@ -17,15 +17,9 @@ int countPairs2(int *arr, int len, int value) {
   int result = 0;
   int left = 0;
   int right = len - 1;
-  while (right >= 0 && arr[right] > value) {
-    right--;
-  }
-  while (left < right && arr[left] + arr[right] < value) {
-    left++;
-  }
   while (left < right) {
     int sum = arr[left] + arr[right];
-    if (sum == value){
+    if (sum == value) {
       if (arr[left] == arr[right]) {
         int n = right - left + 1;
         result += n * (n - 1) / 2;
